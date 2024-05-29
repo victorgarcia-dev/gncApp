@@ -16,7 +16,7 @@ export const Router = () => {
            <Routes>
                <Route element= { <AppLayoutPrivate/> }>
                    <Route path='/' element={ <DashboardView/> } index/>
-                   <Route path='/form/createCar' element={ <CreateCarView/> } index/> 
+                   <Route path='/form/createCar' element={ <CreateCarView/> }/> 
                </Route>
                <Route element={ <AppLayout/>}>
                    <Route path='/home' element={ <Home/>}/>

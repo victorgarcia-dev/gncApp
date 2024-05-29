@@ -1,6 +1,8 @@
 
-import { CheckMyStatus } from "../components/publicComponents/CheckMyStatus"
-import { Header } from "../components/publicComponents/Header"
+import { CheckMyStatus } from "../components/publicComponents/CheckMyStatus";
+import { Footer } from "../components/publicComponents/Footer";
+import { Header } from "../components/publicComponents/Header";
+import { Services } from "../components/publicComponents/Services";
 
 export const Home = () => {
 
@@ -8,6 +10,8 @@ export const Home = () => {
     <>
        <Header/>
        <CheckMyStatus/>
+       <Services/>
+       <Footer/>
     </>
   )
 }
