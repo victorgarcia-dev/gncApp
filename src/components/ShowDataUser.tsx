@@ -1,8 +1,4 @@
-import { useContext } from "react";
-import { UserDataContext } from "../context/UserDataContext";
 import { AlertMessage } from "./AlertMessage";
-
-
 
 export const ShowDataUser= () => {
 	const title = 'Estado de Vencimiento de la Oblea';
@@ -21,12 +17,10 @@ export const ShowDataUser= () => {
 		text:'text-blue-600'
 	}
 
-	const {usuario}= useContext(UserDataContext);
-
   return(
       <div className=" flex flex-col">
-		<h2 className='font-extrabold mb-2 text-center text-white pl-6'>REPORTE DEL EQUIPO CONSULTADO</h2>
-			<section className='rounded-lg  text-sm border-2 p-2 text-white'>
+		<h2 className='font-extrabold mb-2 text-center text-fuchsia-600 pl-6'>REPORTE DEL EQUIPO CONSULTADO</h2>
+			<section className='rounded-lg  text-sm border-2 p-2 text-black bg-gray-100'>
 				<div className='font-bold px-4 flex flex-col'>
 					<h3 className="text-center">DATOS DE LA OBLEA</h3>
 					<p className='font-normal bg-gainsboro'>Oblea anterior: {usuario.Oblea_anterior} </p>
@@ -44,7 +38,7 @@ export const ShowDataUser= () => {
 					<p className='font-normal'>Tipo de Vehículo: {usuario.Tipo_de_Vehículo}</p>
 				</div>
 			</section>		
-			<section className='rounded-lg  text-sm border-2 p-2 text-white mt-4'>
+			<section className='rounded-lg  text-sm border-2 p-2 mt-4 text-black bg-gray-100'>
 		            <div className="font-bold px-4 flex flex-col">
 						<h3 className='font-bold text-center mb-2'>CILINDROS</h3>
 						<p className=' bg-gainsboro'>Código: {usuario.Codigo}</p>

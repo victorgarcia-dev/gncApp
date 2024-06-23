@@ -1,21 +1,12 @@
-import { useState, useContext } from 'react';
 import {useForm} from 'react-hook-form';
 import { ErrorMesage } from '../ErrorMesage';
 import { PatenteFormData } from '../../types';
-import { usuarios } from '../../data/dataUser';
 import { useNavigate } from 'react-router-dom';
-import { UserDataContext } from '../../context/UserDataContext';
-
-
-
-
+import { getUser } from '../../api/getUserAPI';
 
 export const CheckMyStatus = () => {
 
   const navigate = useNavigate();
-  const {setUser} = useContext(UserDataContext);
-  const [dataUsers , setDataUsers] = useState(usuarios);
-
 
   const initialValues: PatenteFormData = {
         "patente":""
@@ -23,28 +14,24 @@ export const CheckMyStatus = () => {
   const {register, handleSubmit, formState: {errors}} = useForm({defaultValues:initialValues});
 
  const handleForm = (data:PatenteFormData) => {
-
-  const userFilterData = usuarios.filter(user => user.Dominio === data.patente);
-  setUser(userFilterData[0]);
+  getUser(data.patente);
   navigate('/home/user');
  }
 
- 
-
   return (
     <>
-        <div className="bg-[conic-gradient(at_bottom,_var(--tw-gradient-stops))] from-yellow-500 via-gray-800 to-black h-40">
-          <h2 className="font-bold text-center text-yellow-950 font-xl pt-3"><span className="text-yellow-500">Verificar</span>Mi Estado</h2>
+        <div className="bg-gray-100 h-40">
+          <h2 className="font-bold text-center text-fuchsia-600 font-xl pt-3"><span className="text-fuchsia-600">Verificar</span>Mi Estado</h2>
           <form onSubmit={handleSubmit(handleForm)}
                 noValidate
           >
             <div className="m-2 px-1 text-center">
-              <label className="text-white"
+              <label className="text-black font-bold"
                     htmlFor='patente'
               >
                 Ingrese su numero de patente
               </label>
-              <input className="px-2 rounded-md"
+              <input className="px-2 rounded-md bg-gray-300 placeholder-gray-400 font-medium mt-1 mb-2"
                     id='patente'
                     type="text" 
                     placeholder="ingrese aqui los datos" 
@@ -57,7 +44,7 @@ export const CheckMyStatus = () => {
                 )}
             </div>
             <div className="flex justify-center">
-              <input className="bg-yellow-500 hover:bg-yellow-600 w-6/12 h-8 rounded-md text-white font-bold"
+              <input className="bg-gray-500 hover:bg-gray-700 w-6/12 h-8 rounded-md text-white font-bold"
                     type='submit'
                     value="Comprobar"
               />

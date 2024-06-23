@@ -10,7 +10,7 @@ export type Patente = z.infer<typeof patenteSchema>
 export type PatenteFormData = Pick<Patente, 'patente'>
 
 /** type data Json**/
-export type Usuarios = {
+export type User = {
         Fecha_de_habilitación?: string,
 		Oblea_anterior?: string,
 		Fecha_de_vencimiento?: string,
