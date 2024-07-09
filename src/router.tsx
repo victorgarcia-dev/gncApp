@@ -4,9 +4,10 @@ import { AppLayoutPrivate } from './layout/AppLayoutPrivate';
 import { DashboardView } from './views/DashboardView';
 import { CreateCarView } from './views/form/CreateCarView';
 import { AppLayout } from './layout/AppLayout';
-import { Home } from './pages/Home';
 //import { ShowUserStatus } from './pages/ShowUserStatus';
 import { LoginView } from './views/auth/LoginView';
+import { Home } from './pages/Home';
+import { ShowUserData } from './views/user/ShowUserData';
 
 
 
@@ -15,10 +16,10 @@ export const Router = () => {
         <BrowserRouter>
            <Routes>
                 <Route element={ <AppLayout/>}>
-                   <Route path='/home' element={ <Home/>} index/>
-                   {/*<Route path='/home/user' element={ <ShowUserStatus/>}/>*/}
-                   <Route path='/home/login'  element={ <LoginView/> }/>
-                   <Route path='*'  element={ <Navigate to="/home"/> }/>
+                   <Route path='/'  element={ <Home/> } index/>
+                   <Route path='/login'  element={ <LoginView/> }/>
+                   <Route path='/user'  element={ <ShowUserData/> }/>
+                   <Route path='*'  element={ <Navigate to="/"/> }/>
                </Route>
                <Route element= { <AppLayoutPrivate/> }>
                    <Route path='/dashboard' element={ <DashboardView/>}/>

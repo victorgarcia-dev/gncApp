@@ -1,21 +1,25 @@
+import { useContext } from 'react';
 import {useForm} from 'react-hook-form';
 import { ErrorMesage } from '../ErrorMesage';
 import { PatenteFormData } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../../api/getUserAPI';
+import { UserContext } from '../../context/UserContext';
 
 export const CheckMyStatus = () => {
 
+  const {setUserData} = useContext(UserContext);
   const navigate = useNavigate();
 
+  //form
   const initialValues: PatenteFormData = {
         "patente":""
   }
   const {register, handleSubmit, formState: {errors}} = useForm({defaultValues:initialValues});
 
- const handleForm = (data:PatenteFormData) => {
-  getUser(data.patente);
-  navigate('/home/user');
+ const handleForm = async(data:PatenteFormData) => {
+  setUserData(await getUser(data.patente))
+  navigate('/user');
  }
 
   return (

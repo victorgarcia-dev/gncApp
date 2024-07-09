@@ -24,13 +24,13 @@ export const LoginView = () => {
             <div className="flex flex-col gap-5">
               <label
                 className="font-normal text-2xl"
-              >Email</label>
+              >Ingrese  Hito</label>
     
               <input
-                id="email"
-                type="email" 
+                id="hito"
+                type="" 
 
-                placeholder="Email de Registro"
+                placeholder="hito de Registro"
                 className="w-full p-3  border-gray-300 border"
                 {...register("email", {
                   required: "El Email es obligatorio",
