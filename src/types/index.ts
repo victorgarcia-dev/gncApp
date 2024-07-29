@@ -53,12 +53,29 @@ export type UserData = {
     xtipoprrec: string
 }
 
+export type Organization = {
+  nombre: string,
+  razonSocial: string,
+  cuit: string,
+  intervaloPorHorario: number,
+  direccion: string,
+  telefono: string,
+  email: string,
+}
+
 /***auth***/
 const authSchema = z.object({
-	email: z.string().email(),
+	hito: z.string(),
 	password: z.string()
 });
 
+/**horarios */
+export type Schedules = {
+  "dia": string,
+  "horaDesde": number,
+  "horaHasta": number
+}
+
 type Auth = z.infer<typeof authSchema>;
-export type UserLoginform = Pick<Auth, 'email' | 'password'>
+export type UserLoginform = Pick<Auth, 'hito' | 'password'>
 

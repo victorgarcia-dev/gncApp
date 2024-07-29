@@ -5,7 +5,7 @@ export const Services = () => {
   return (
     <div className='mx-4 my-4'>
         <h2 className="font-bold text-lg mt-4 mb-2 text-gray-100">SERVICIOS</h2>
-        <div className="max-w-sm rounded overflow-hidden shadow-lg border-2 rounded-r-lg mb-2">
+        <div className="max-w-sm rounded overflow-hidden shadow-lg border-2 rounded-r-lg mb-4">
             <img className="w-full" src={imgO} alt="Sunset in the mountains"/>
                 <div className="px-6 py-4 bg-gray-100">
                     <h3 className="font-bold text-xl mb-2">Renovar la oblea</h3>

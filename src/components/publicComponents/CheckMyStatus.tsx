@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import {useForm} from 'react-hook-form';
-import { ErrorMesage } from '../ErrorMesage';
+import { ErrorMessage } from '../ErrorMessage';
 import { PatenteFormData } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../../api/getUserAPI';
@@ -24,36 +24,34 @@ export const CheckMyStatus = () => {
 
   return (
     <>
-        <div className="bg-gray-100 h-40">
-          <h2 className="font-bold text-center text-fuchsia-600 font-xl pt-3"><span className="text-fuchsia-600">Verificar</span>Mi Estado</h2>
-          <form onSubmit={handleSubmit(handleForm)}
-                noValidate
-          >
-            <div className="m-2 px-1 text-center">
-              <label className="text-black font-bold"
-                    htmlFor='patente'
-              >
-                Ingrese su numero de patente
-              </label>
-              <input className="px-2 rounded-md bg-gray-300 placeholder-gray-400 font-medium mt-1 mb-2"
-                    id='patente'
-                    type="text" 
-                    placeholder="ingrese aqui los datos" 
-                    {...register("patente", {
-                      required: "requiere una patente",
-                  })}
-              />
-              {errors.patente && (
-                      <ErrorMesage>{errors.patente.message}</ErrorMesage>
-                )}
-            </div>
-            <div className="flex justify-center">
-              <input className="bg-gray-500 hover:bg-gray-700 w-6/12 h-8 rounded-md text-white font-bold"
-                    type='submit'
-                    value="Comprobar"
-              />
-            </div>
-          </form>
+        <div className="mt-3 mb-8 flex min-h-full flex-col justify-center px-6 lg:px-8">
+          <h2 className="font-bold text-white text-center font-xl pt-1 mb-3"><span className="text-white">Verificar </span>Mi Estado</h2>
+          <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
+            <form className='space-y-6' onSubmit={handleSubmit(handleForm)}
+                  noValidate
+            >
+              <div>
+                <label htmlFor="patente" className="block text-sm font-medium leading-3 text-white mb-2">Ingrese su numero de patente</label>
+                <input id="patente" 
+                      type="text" 
+                      autoComplete='patente'
+                      className="bg-gray-700 px-3 block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
+                      {...register("patente", {
+                        required: "requiere una patente",
+                      })}
+                />
+                {errors.patente && (
+                        <ErrorMessage>{errors.patente.message}</ErrorMessage>
+                  )}
+              </div>
+
+              <div>
+                <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        type="submit"
+                >COMPROBAR</button>
+              </div> 
+            </form>
+          </div>
         </div>
     </>
   )

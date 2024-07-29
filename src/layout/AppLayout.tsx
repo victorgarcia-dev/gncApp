@@ -5,7 +5,7 @@ import { Footer } from '../components/publicComponents/Footer';
 export const AppLayout = () => {
   return (
     <>
-        <div className='bg-gray-800'>
+        <div className='bg-gray-900'>
           <div className='container mx-auto w-full'>
             <Header/>
               <Outlet/>
