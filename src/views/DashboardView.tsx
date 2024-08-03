@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import LoginButton from '../components/LoginButton';
+import LogoutButton from '../components/LogoutButton';
 
 export const DashboardView = () => {
   return (
@@ -7,6 +9,7 @@ export const DashboardView = () => {
         <p className="text-2xl font-light text-gray-500 mt-5">Maneja y administra tus clientes</p>
 
         <nav className="my-5 flex flex-col">
+          <LogoutButton/>
           <Link 
                className='bg-purple-400 hover:bg-purple-500 px-10 text-white text-xl font-bold cursor-pointer transition-colors mb-3'
                to='/dashboard/form/createOrganization'
