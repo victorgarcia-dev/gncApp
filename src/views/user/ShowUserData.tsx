@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { AlertMessage } from '../../components/AlertMessage';
 
 const usuario = {
   "id": 3,
@@ -85,6 +86,7 @@ export const ShowUserData = () => {
             <p className='text-sm text-gray-500'>Telefono</p>
             <p className='text-gray-900 text-sm font-bold'>{usuario.utelefono}</p>
         </div>
+        <AlertMessage/>
 			</div>
     </div>
   )

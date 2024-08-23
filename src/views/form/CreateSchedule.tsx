@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { Schedules } from "../../types";
 
-export const CreateShedules = () => {
+export const CreateSchedules = () => {
 
   const initialValues: Schedules = {
   "dia": "",
