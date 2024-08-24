@@ -14,8 +14,10 @@ import { OrganizationShiftsView } from './views/organization/OrganizationShiftsV
 import { CreateServiceOrganization } from './views/form/CreateServiceOrganization';
 
 import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
-import { ScheduleShift } from './views/form/ScheduleShift';
+//import { ScheduleShift } from './views/form/ScheduleShift';
 import { CreateSchedules } from './views/form/CreateSchedule';
+import { FilterOrganizations } from './views/form/FilterOrganizations';
+import { CalendarView } from './views/turner/CalendarView';
 
 
 
@@ -57,8 +59,11 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
             <Route element={<AppLayout />}>
               <Route path='/' element={<Home />} index />
               <Route path='/user' element={<ShowUserData />} />
-              <Route path='/user/createTurner' element={<ScheduleShift/>} />
+              <Route path='/user/filterTurner' element={<FilterOrganizations/>} />
+              <Route path='/user/filterTurner/calendar' element={<CalendarView/>} />
+              {/*<Route path='/user/createTurner' element={<ScheduleShift/>} />*/}
               <Route path='*' element={<Navigate to="/" />} />
+              
             </Route>
             <Route element={<AppLayoutPrivate />}>
               {/* Rutas Admin */}
