@@ -1,10 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate  } from 'react-router-dom';
 
+import { AppLayout } from './layout/AppLayout';
+import { AppLayoutPublic } from './layout/AppLayoutPublic';
 import { AppLayoutPrivate } from './layout/AppLayoutPrivate';
 import { DashboardView } from './views/DashboardView';
-import { AppLayout } from './layout/AppLayout';
 
 import { Home } from './pages/Home';
+
+import { ListaOrganizacion } from './pages/public/turnos/ListaOrganizacion';
+
 import { ShowUserData } from './views/user/ShowUserData';
 import { CreateOrganization } from './views/form/CreateOrganization';
 import { OrganizationView } from './views/organization/OrganizationView';
@@ -18,6 +22,7 @@ import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
 import { CreateSchedules } from './views/form/CreateSchedule';
 import { FilterOrganizations } from './views/form/FilterOrganizations';
 import { CalendarView } from './views/turner/CalendarView';
+import { DetalleOrganizacion } from './pages/public/turnos/DetalleOrganizacion';
 
 
 
@@ -56,6 +61,10 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
           }}
         >
           <Routes>
+            <Route element={<AppLayoutPublic />}>
+              <Route path='/listaOrganizacion' element={<ListaOrganizacion />} />
+              <Route path="/listaOrganizacion/:id" element={<DetalleOrganizacion />} />
+            </Route>
             <Route element={<AppLayout />}>
               <Route path='/' element={<Home />} index />
               <Route path='/user' element={<ShowUserData />} />
