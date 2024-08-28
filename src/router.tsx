@@ -17,7 +17,9 @@ import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
 //import { ScheduleShift } from './views/form/ScheduleShift';
 import { CreateSchedules } from './views/form/CreateSchedule';
 import { FilterOrganizations } from './views/form/FilterOrganizations';
-import { CalendarView } from './views/turner/CalendarView';
+import { Calendar } from './views/turner/Calendar';
+import { SelectCalendarDate } from './views/turner/SelectCalendarDate';
+
 
 
 
@@ -60,7 +62,8 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
               <Route path='/' element={<Home />} index />
               <Route path='/user' element={<ShowUserData />} />
               <Route path='/user/filterTurner' element={<FilterOrganizations/>} />
-              <Route path='/user/filterTurner/calendar' element={<CalendarView/>} />
+              <Route path='/user/filterTurner/calendar/:id' element={<Calendar/>} />
+              <Route path='/user/filterTurner/calendar/:id/:fecha' element={<SelectCalendarDate/>} />
               {/*<Route path='/user/createTurner' element={<ScheduleShift/>} />*/}
               <Route path='*' element={<Navigate to="/" />} />
               
