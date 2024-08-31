@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import LogoutButton from "../LogoutButton";
 
 import { FaClipboardList } from "react-icons/fa6";
 import { TbClockHour4 } from "react-icons/tb";
 import { MdOutlineHourglassBottom } from "react-icons/md";
+import LogoutButton from "../../auth/LogoutButton";
 
 export const Sidebar = () => {
   return (

@@ -1,6 +1,4 @@
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { AlertMessage } from '../../components/AlertMessage';
+import { AlertMessage } from '../../../components/AlertMessage';
 
 const usuario = {
   "id": 3,
@@ -50,10 +48,6 @@ const usuario = {
 
 export const ShowUserData = () => {
 
-  const { userData } = useContext(UserContext);
-  console.log(userData);
-  const date = new Date("2024-06-03T12:00:00");
-  console.log(date.getDay());
   return (
     <div className='mt-3 mr-2 ml-2 bg-white shadow-lg p-2 rounded-lg text-indigo-500'>
       <h2 className='bg-gray-200 shadow-lg text-center font-extrabold p-2 rounded-lg max-w-72'>ESTADO DEL EQUIPO</h2>

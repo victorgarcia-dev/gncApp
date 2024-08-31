@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Sidebar } from '../components/privateComponents/Sidebar';
+import { Sidebar } from '../pages/private/components/Sidebar';
+
 
 export const AppLayoutPrivate = () => {
   return (

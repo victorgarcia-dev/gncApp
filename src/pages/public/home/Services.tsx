@@ -1,5 +1,5 @@
-import imgPH from '../../../public/img/hidraulica.webp';
-import imgO from '../../../public/img/oblea.webp';
+import imgPH from '../../../../public/img/hidraulica.webp';
+import imgO from '../../../../public/img/oblea.webp';
 
 export const Services = () => {
   return (

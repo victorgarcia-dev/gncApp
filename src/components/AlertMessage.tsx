@@ -15,7 +15,7 @@ export const AlertMessage = () => {
   }
 
  const createTurner = () =>{
-   navigate('/user/filterTurner')
+   navigate('/user/listOrganizations')
   }
 
 

@@ -1,12 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate  } from 'react-router-dom';
 
 import { AppLayoutPrivate } from './layout/AppLayoutPrivate';
-import { DashboardView } from './views/DashboardView';
+import { DashboardView } from './pages/private/components/DashboardView';
 import { AppLayout } from './layout/AppLayout';
 
-import { Home } from './pages/Home';
-import { ShowUserData } from './views/user/ShowUserData';
-import { CreateOrganization } from './views/form/CreateOrganization';
+import { ShowUserData } from './pages/public/informacionDelUsuario/ShowUserData';
+
 import { OrganizationView } from './views/organization/OrganizationView';
 import { OrganizationsView } from './views/organization/OrganizationsView';
 
@@ -14,11 +13,13 @@ import { OrganizationShiftsView } from './views/organization/OrganizationShiftsV
 import { CreateServiceOrganization } from './views/form/CreateServiceOrganization';
 
 import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
-//import { ScheduleShift } from './views/form/ScheduleShift';
 import { CreateSchedules } from './views/form/CreateSchedule';
-import { FilterOrganizations } from './views/form/FilterOrganizations';
-import { Calendar } from './views/turner/Calendar';
-import { SelectCalendarDate } from './views/turner/SelectCalendarDate';
+
+import { Home } from './pages/public/home/Home';
+import { ListaOrganizaciones } from './pages/public/organizacion/ListaOrganizaciones';
+import { Calendario } from './pages/public/turnero/Calendario';
+import { CrearTurnoUsuario } from './pages/public/turnero/CrearTurnoUsuario';
+
 
 
 
@@ -59,19 +60,17 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
         >
           <Routes>
             <Route element={<AppLayout />}>
-              <Route path='/' element={<Home />} index />
+              <Route path='/' element={<Home/>} index />
               <Route path='/user' element={<ShowUserData />} />
-              <Route path='/user/filterTurner' element={<FilterOrganizations/>} />
-              <Route path='/user/filterTurner/calendar/:id' element={<Calendar/>} />
-              <Route path='/user/filterTurner/calendar/:id/:fecha' element={<SelectCalendarDate/>} />
-              {/*<Route path='/user/createTurner' element={<ScheduleShift/>} />*/}
+              <Route path='/user/listOrganizations' element={<ListaOrganizaciones/>} />
+              <Route path='/user/listOrganizations/calendar/:id' element={<Calendario/>} />
+              {<Route path='/user/filterTurner/calendar/createTurnerUser' element={<CrearTurnoUsuario/>} />}
               <Route path='*' element={<Navigate to="/" />} />
               
             </Route>
             <Route element={<AppLayoutPrivate />}>
               {/* Rutas Admin */}
               <Route path='/dashboard' element={<ProtectedRoute component={DashboardView} />} />
-              <Route path='/dashboard/form/createOrganization' element={<CreateOrganization />} />
               <Route path='/dashboard/organizationsView' element={<OrganizationsView />} />
               {/* Rutas organización */}
               <Route path='/workshop/form/createOrganizationalSchedules' element={<CreateSchedules/>} />

@@ -3,13 +3,10 @@ import {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 
 
-const baseURL = "https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/organizacion";
-
-
-
-export const FilterOrganizations = () => {
+export const ListaOrganizaciones = () => {
 
   const [post, setPost] = useState<any[]>([]);
+  const baseURL = "https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/organizacion";
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -17,9 +14,7 @@ export const FilterOrganizations = () => {
     });
   }, []);
 
-
   if (!post) return null;
-
 
 
   return (
@@ -27,7 +22,7 @@ export const FilterOrganizations = () => {
     <h3 className="text-center font-extrabold text-indigo-600 py-3">Lista de Talleres</h3>
     <ul role="list" className="divide-y divide-gray-400 w-11/12 mx-auto pb-3 mb-3">
       {post.map((person) => (
-        <Link to={`/user/filterTurner/calendar/${person.id}`}  key={person.id} className="flex justify-between gap-x-6 py-5 hover:bg-gray-200 rounded-md">
+        <Link to={`/user/listOrganizations/calendar/${person.id}`}  key={person.id} className="flex justify-between gap-x-6 py-5 hover:bg-gray-200 rounded-md">
           <div className="flex min-w-0 gap-x-4">
             <img alt="" src={'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'} className="h-12 w-12 flex-none rounded-full bg-gray-50" />
             <div className="min-w-0 flex-auto">

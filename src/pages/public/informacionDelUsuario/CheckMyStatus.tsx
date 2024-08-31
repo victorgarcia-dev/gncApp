@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import {useForm} from 'react-hook-form';
-import { ErrorMessage } from '../ErrorMessage';
-import { PatenteFormData } from '../../types';
+import { ErrorMessage } from '../../../components/ErrorMessage';
+import { PatenteFormData } from '../../../types';
 import { useNavigate } from 'react-router-dom';
-import { getUser } from '../../api/getUserAPI';
-import { UserContext } from '../../context/UserContext';
+import { getUser } from '../../../api/getUserAPI';
+import { UserContext } from '../../../context/UserContext';
 
 export const CheckMyStatus = () => {
 
