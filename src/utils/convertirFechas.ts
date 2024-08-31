@@ -35,3 +35,53 @@ export const modifyDate = (hourUser,userDate) => {
    
     return date
 }
+
+
+
+ //convertir un dia en numero
+export const numberToDay = (number) => {
+    const daysOfWeek = [
+      'Domingo', // 0
+      'Lunes',   // 1
+      'Martes',  // 2
+      'Miércoles', // 3
+      'Jueves',  // 4
+      'Viernes', // 5
+      'Sábado',  // 6
+    ];  
+    return daysOfWeek[number % 7];
+  };
+
+//convertir 09:0:00 a 9 
+export const timeStringToNumber = (timeString) => {
+    // Divide la cadena en horas, minutos y segundos
+    const [hours, minutes, seconds] = timeString.split(':').map(Number);
+    return hours;
+};   
+
+
+//crear array de horas con intervalo
+export const generateHoursWithIntervals = (interval, horaInicio, horaFinal) => {
+    const hours = [];
+    for (let i = horaInicio; i < horaFinal; i++) { // Recorrer las 24 horas del día
+      for (let j = 0; j < 60; j += interval) { // Intervalos en minutos
+        // Formatear la hora y los minutos en formato HH:MM
+        const hour = `${i.toString().padStart(2, '0')}:${j.toString().padStart(2, '0')}`;
+        hours.push(hour);
+      }
+    }
+    //elimino el ultmo elemento
+    hours.pop();
+
+    return hours;
+ };
+
+
+//convierte a formato "HH:MM"
+export const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+  

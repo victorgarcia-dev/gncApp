@@ -1,14 +1,11 @@
-import { useContext } from 'react';
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '../../../components/ErrorMessage';
 import { PatenteFormData } from '../../../types';
 import { useNavigate } from 'react-router-dom';
-import { getUser } from '../../../api/getUserAPI';
-import { UserContext } from '../../../context/UserContext';
+
+
 
 export const CheckMyStatus = () => {
-
-  const {setUserData} = useContext(UserContext);
   const navigate = useNavigate();
 
   //form
@@ -18,20 +15,21 @@ export const CheckMyStatus = () => {
   const {register, handleSubmit, formState: {errors}} = useForm({defaultValues:initialValues});
 
  const handleForm = async(data:PatenteFormData) => {
-  setUserData(await getUser(data.patente))
+ 
   navigate('/user');
  }
 
   return (
     <>
-        <div className="mt-3 mb-8 flex min-h-full flex-col justify-center px-6 lg:px-8">
-          <h2 className="font-bold text-white text-center font-xl pt-1 mb-3"><span className="text-white">Verificar </span>Mi Estado</h2>
+        <div className="mt-3
+         flex min-h-full flex-col justify-center px-6 lg:px-8">
+          <h2 className="font-bold text-white text-center font-xl pt-1 mb-6"><span className="text-white">Verificar </span>Mi Estado</h2>
           <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
             <form className='space-y-6' onSubmit={handleSubmit(handleForm)}
                   noValidate
             >
               <div>
-                <label htmlFor="patente" className="block text-sm font-medium leading-3 text-white mb-2">Ingrese su numero de patente</label>
+                <label htmlFor="patente" className="block text-sm font-medium leading-3 text-white mb-4">Ingrese su numero de patente</label>
                 <input id="patente" 
                       type="text" 
                       autoComplete='patente'

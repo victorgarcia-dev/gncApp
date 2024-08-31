@@ -1,11 +1,11 @@
 import { CheckMyStatus } from "../informacionDelUsuario/CheckMyStatus"
-import { Services } from "./Services"
+import { CardService } from "./CardService"
 
 export const Home = () => {
   return (
     <>
        <CheckMyStatus/>
-       <Services/>
+       <CardService/>
     </>
   )
 }

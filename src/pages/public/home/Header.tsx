@@ -10,7 +10,7 @@ export const Header = () => {
   const {pathname} = useLocation();
 
     return (
-     <div>
+     <>
         {
            isAuthenticated ? 
            <>
@@ -29,7 +29,7 @@ export const Header = () => {
              </div>
            </>
         }
-     </div>  
+     </>  
     )
 }
   

@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link  } from "react-router-dom";
 import { DateContext } from "../../../context/DateContext";
+import { numberToDay , timeStringToNumber, generateHoursWithIntervals, formatTime } from "../../../utils/convertirFechas";
 
 export const Calendario = () => {
     const {id} = useParams();
@@ -13,8 +14,9 @@ export const Calendario = () => {
     const {setUserDate, setUserHour} = useContext(DateContext);
     
     
-    //dias y horaios de la empresa
+    //lista de dias y horarios de la organización
     const [post, setPost] = useState([]);
+    //horaios de la organización
     const [horaInicio, setHoraInicio] = useState(0);
     const [horaFinal, setHoraFinal] = useState(0);
     const [turnosOcupados, setTurnosOcupados] = useState([]);
@@ -37,7 +39,9 @@ export const Calendario = () => {
     };
     
 
+    //url => horarios de organizacion por ID
     const baseURL = `https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/OrganizacionHorarios/organizacion/${id}`;
+    //url => lista
     const baseURL2 = `https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/turnos/organizacion/${id}/soloHorarios?fecha=${getFormattedDate(fecha)}`;
    
     
@@ -55,42 +59,16 @@ export const Calendario = () => {
       });
     }, [fecha])
 
-     console.log(post);
-
-    if (!post) return null;
-
-    //convertir 09:0:00 a 9 
-    const timeStringToNumber = (timeString) => {
-      // Divide la cadena en horas, minutos y segundos
-      const [hours, minutes, seconds] = timeString.split(':').map(Number);
-      return hours;
-    };
-
-     //convertir un numero a nombre de dia
-     const numberToDay = (number) => {
-      const daysOfWeek = [
-        'Domingo', // 0
-        'Lunes',   // 1
-        'Martes',  // 2
-        'Miércoles', // 3
-        'Jueves',  // 4
-        'Viernes', // 5
-        'Sábado',  // 6
-      ];  
-      return daysOfWeek[number % 7];
-    };
-
+    if (!post) return [];
 
 
     //nueva fecha
     const onChange = (fecha) => {
       setFecha(fecha);
-      console.log(fecha);
       setUserDate(fecha);
      
        for (let index = 0; index < post.length; index++) {
           if(post[index].dia === numberToDay(fecha.getDay())){
-             console.log(numberToDay(fecha.getDay()))
              setHoraInicio(timeStringToNumber(post[index].horaDesde));
              setHoraFinal(timeStringToNumber(post[index].horaHasta)+1); 
           } 
@@ -108,29 +86,14 @@ export const Calendario = () => {
     setUserHour(hour)
   }
 
-   
+  // Obtener la lista de horarios
+  const hours = generateHoursWithIntervals(30, horaInicio, horaFinal);
 
-    //crear array de horas
-    const generateHoursWithIntervals = (interval) => {
-      const hours = [];
-      for (let i = horaInicio; i < horaFinal; i++) { // Recorrer las 24 horas del día
-        for (let j = 0; j < 60; j += interval) { // Intervalos en minutos
-          // Formatear la hora y los minutos en formato HH:MM
-          const hour = `${i.toString().padStart(2, '0')}:${j.toString().padStart(2, '0')}`;
-          hours.push(hour);
-        }
-      }
-      return hours;
-    };
+  //comparar fechas
+  const dateString = turnosOcupados[0];
+  const dateObject = new Date(dateString);
   
-    // Obtener la lista de horarios
-    const hours = generateHoursWithIntervals(30);
 
-    //comparar fechas
-    const dateString = turnosOcupados[0];
-    const dateObject = new Date(dateString); 
-
-   
   return (
     <div className="flex flex-col justify-center bg-gray-100 py-4 container mx-auto w-full px-5 rounded">
        <h3 className="text-center font-extrabold my-3 md:text-xl">Seleccione dia y hora</h3>
@@ -157,7 +120,7 @@ export const Calendario = () => {
                     >
                       
                             <div className="mt-1 flex items-center gap-x-1.5 px-3">
-                                { dateObject.getHours() === timeStringToNumber(hour) ? (
+                                { formatTime(dateObject) === hour ? (
                                   <>
                                     <div className="flex-none rounded-full bg-red-500/20 p-1">
                                         <div className="h-1.5 w-1.5 rounded-full bg-red-500" />
