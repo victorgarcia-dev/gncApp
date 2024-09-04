@@ -84,4 +84,22 @@ export const formatTime = (dateString) => {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
   };
+
+export const finalFormattedDate = (isoDate) => {
+
+  const date = new Date(isoDate);
+
+  // Opciones para formatear la fecha
+  const options = { month: 'long', day: 'numeric' };
+
+  // Obtener el nombre del mes y el día
+  const formattedDate = date.toLocaleDateString('es-ES', options);
+
+  // Obtener la hora
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+
+  // Formatear la fecha y la hora en el formato deseado
+   return `${formattedDate} ${hours}:${minutes}hs`;
+}
   

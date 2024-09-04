@@ -6,11 +6,13 @@ export const AppLayoutPrivate = () => {
   return (
     <>
        <section>
-        <div className='grid grid-cols-5'>
-            <div className='col-span-1 h-screen bg-gray-900'>
+        <div className='flex flex-row'>
+            <div className='w-1/5 bg-gray-900 h-screen'>
               <Sidebar/>
             </div>
-            <Outlet/>
+            <div className='bg-white w-4/5 h-screen'>
+               <Outlet/>
+            </div>
         </div>
        </section>
     </>

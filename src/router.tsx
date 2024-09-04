@@ -1,24 +1,24 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate  } from 'react-router-dom';
 
-import { AppLayoutPrivate } from './layout/AppLayoutPrivate';
-import { DashboardView } from './pages/private/components/DashboardView';
-import { AppLayout } from './layout/AppLayout';
-
-import { ShowUserData } from './pages/public/informacionDelUsuario/ShowUserData';
-
-import { OrganizationView } from './views/organization/OrganizationView';
-import { OrganizationsView } from './views/organization/OrganizationsView';
-
-import { OrganizationShiftsView } from './views/organization/OrganizationShiftsView';
-import { CreateServiceOrganization } from './views/form/CreateServiceOrganization';
-
+{/**auth */}
 import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
-import { CreateSchedules } from './views/form/CreateSchedule';
 
+{/**public */}
+import { AppLayout } from './layout/AppLayout';
+import { ShowUserData } from './pages/public/informacionDelUsuario/ShowUserData';
 import { Home } from './pages/public/home/Home';
 import { ListaOrganizaciones } from './pages/public/organizacion/ListaOrganizaciones';
 import { Calendario } from './pages/public/turnero/Calendario';
+
+{/** private*/}
+import { DashboardView } from './pages/private/components/DashboardView';
+import { AppLayoutPrivate } from './layout/AppLayoutPrivate';
 import { CrearTurnoUsuario } from './pages/public/turnero/CrearTurnoUsuario';
+import { PerfilOrganizacion } from './pages/private/organizacion/PerfilOrganizacion';
+import { ServiciosOrganizacion } from './pages/private/organizacion/ServiciosOrganizacion';
+import { HorariosOrganizacion } from './pages/private/organizacion/HorariosOrganizacion';
+import { CrearServicioOrganizacion } from './pages/private/form/CrearServicioOrganizacion';
+
 
 
 
@@ -69,14 +69,12 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
               
             </Route>
             <Route element={<AppLayoutPrivate />}>
-              {/* Rutas Admin */}
-              <Route path='/dashboard' element={<ProtectedRoute component={DashboardView} />} />
-              <Route path='/dashboard/organizationsView' element={<OrganizationsView />} />
               {/* Rutas organización */}
-              <Route path='/workshop/form/createOrganizationalSchedules' element={<CreateSchedules/>} />
-              <Route path='/organization/form/createServiceOrganization' element={<CreateServiceOrganization />} />
-              <Route path='/organization/organizationShifts' element={<OrganizationShiftsView />} />
-              <Route path='/profile/organization' element={<ProtectedRoute component={OrganizationView} />} />
+              <Route path='/dashboard' element={<ProtectedRoute component={DashboardView} />} />
+              <Route path='/dashboard/profile' element={<ProtectedRoute component={PerfilOrganizacion} />}/>
+              <Route path='/dashboard/createSchedules' element={<ProtectedRoute component={HorariosOrganizacion} />} />
+              <Route path='/dashboard/listServices' element={<ProtectedRoute component={ServiciosOrganizacion} />} />
+              <Route path='/dashboard/createServiceOrganization' element={<ProtectedRoute component={CrearServicioOrganizacion} />} />                    
             </Route> 
           </Routes>
         </Auth0ProviderWithRedirectCallback>

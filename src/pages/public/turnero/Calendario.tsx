@@ -1,18 +1,28 @@
 import axios from "axios";
 import {useEffect, useState, useContext} from "react";
 import { useParams } from "react-router-dom";
-import DatePicker from "react-datepicker";
+import DatePicker, {registerLocale} from "react-datepicker";
+import { es } from 'date-fns/locale/es';
 import "react-datepicker/dist/react-datepicker.css";
-import { Link  } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { DateContext } from "../../../context/DateContext";
 import { numberToDay , timeStringToNumber, generateHoursWithIntervals, formatTime } from "../../../utils/convertirFechas";
+
 
 export const Calendario = () => {
     const {id} = useParams();
 
     //capturo fecha y hora 
     const {setUserDate, setUserHour} = useContext(DateContext);
-    
+
+    //localizacion
+    registerLocale('es', es)
+
+    const navigate = useNavigate();
+
+    //desabilitar un botton
+    const [isDisable, setTsDisable] = useState(false)
+
     
     //lista de dias y horarios de la organización
     const [post, setPost] = useState([]);
@@ -84,6 +94,7 @@ export const Calendario = () => {
   //hora del turno seleccionado por el usuario
   const handleHour = (hour) => {
     setUserHour(hour)
+    navigate('/user/filterTurner/calendar/createTurnerUser')
   }
 
   // Obtener la lista de horarios
@@ -100,11 +111,12 @@ export const Calendario = () => {
        <div className="flex my-3 items-center md:justify-center">
           <p className="font-semibold mr-3 md:text-xl">Fecha</p>
           <DatePicker
-          selected={fecha}
-          onChange={(fecha) => onChange(fecha)}
-          withPortal
-          minDate={minDate}
-          className="styled-input"
+            locale={es}
+            selected={fecha}
+            onChange={(fecha) => onChange(fecha)}
+            withPortal
+            minDate={minDate}
+            className="styled-input"
           />
        </div>
 
@@ -113,8 +125,9 @@ export const Calendario = () => {
         <ul role="list" className="divide-y divide-gray-500 bg-white rounded-md space-y-2">
                 {hours.map((hour,index) => { 
                 return (
-                    <Link to={'/user/filterTurner/calendar/createTurnerUser'}
-                          key={index} className="flex justify-between gap-x-6 py-5 hover:bg-indigo-100"
+                    <button 
+                          disabled={formatTime(dateObject) === hour ? true : false}
+                          key={index} className="flex justify-between gap-x-6 py-5 hover:bg-indigo-100 w-full"
                           onClick={() => handleHour(hour)}
                           
                     >
@@ -137,7 +150,7 @@ export const Calendario = () => {
                                 )
                                 }
                             </div> 
-                    </Link>
+                    </button>
                 )})}
           </ul>
       </div>
