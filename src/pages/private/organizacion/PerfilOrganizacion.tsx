@@ -1,5 +1,4 @@
 import { VscOrganization } from "react-icons/vsc";
-import ImagenUpload from "../components/ImagenUpload";
 
 export const PerfilOrganizacion = () => {
   return (

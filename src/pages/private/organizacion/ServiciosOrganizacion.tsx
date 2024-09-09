@@ -4,14 +4,14 @@ const people = [
       nameService: 'Renovar Oblea',
       costo: 0,
       serviciosId: 0,
-      organizacionId: 0
+      organizacionId: 1
     },
     {
         id: 1,
         nameService: 'Renovar Oblea',
         costo: 0,
         serviciosId: 0,
-        organizacionId: 0
+        organizacionId: 1
       }
 ]
 

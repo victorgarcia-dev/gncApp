@@ -37,7 +37,6 @@ export const modifyDate = (hourUser,userDate) => {
 }
 
 
-
  //convertir un dia en numero
 export const numberToDay = (number) => {
     const daysOfWeek = [
@@ -52,7 +51,7 @@ export const numberToDay = (number) => {
     return daysOfWeek[number % 7];
   };
 
-//convertir 09:0:00 a 9 
+//convertir 09:00:00 a 9 
 export const timeStringToNumber = (timeString) => {
     // Divide la cadena en horas, minutos y segundos
     const [hours, minutes, seconds] = timeString.split(':').map(Number);
@@ -85,8 +84,8 @@ export const formatTime = (dateString) => {
     return `${hours}:${minutes}`;
   };
 
-export const finalFormattedDate = (isoDate) => {
 
+export const finalFormattedDate = (isoDate) => {
   const date = new Date(isoDate);
 
   // Opciones para formatear la fecha

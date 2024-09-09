@@ -23,7 +23,7 @@ const LoginButton = () => {
   console.log(post);*/
 
 
-  return <button onClick={() => loginWithRedirect({appState:{returnTo:"/dashboard"}})}>
+  return <button onClick={() => loginWithRedirect({appState:{returnTo:"/dashboard/profile"}})}>
      <FaCircleUser className="text-3xl text-indigo-500"/>
   </button>;
 };

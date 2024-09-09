@@ -18,6 +18,8 @@ import { PerfilOrganizacion } from './pages/private/organizacion/PerfilOrganizac
 import { ServiciosOrganizacion } from './pages/private/organizacion/ServiciosOrganizacion';
 import { HorariosOrganizacion } from './pages/private/organizacion/HorariosOrganizacion';
 import { CrearServicioOrganizacion } from './pages/private/form/CrearServicioOrganizacion';
+import { CrearHorariosOrganizacion } from './pages/private/form/CrearHorariosOrganizacion';
+import { CrearOrganizacion } from './pages/private/form/CrearOrganizacion';
 
 
 
@@ -66,13 +68,14 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
               <Route path='/user/listOrganizations/calendar/:id' element={<Calendario/>} />
               {<Route path='/user/filterTurner/calendar/createTurnerUser' element={<CrearTurnoUsuario/>} />}
               <Route path='*' element={<Navigate to="/" />} />
-              
             </Route>
             <Route element={<AppLayoutPrivate />}>
               {/* Rutas organización */}
-              <Route path='/dashboard' element={<ProtectedRoute component={DashboardView} />} />
+              <Route path='/verifyOrganization' element={<ProtectedRoute component={DashboardView} />} />
+              <Route path='/verifyOrganization/createOrganization' element={<ProtectedRoute component={CrearOrganizacion} />} />
               <Route path='/dashboard/profile' element={<ProtectedRoute component={PerfilOrganizacion} />}/>
-              <Route path='/dashboard/createSchedules' element={<ProtectedRoute component={HorariosOrganizacion} />} />
+              <Route path='/dashboard/organizationScheduleList' element={<ProtectedRoute component={HorariosOrganizacion} />} />
+              <Route path='/dashboard/createOrganizationalSchedules' element={<ProtectedRoute component={CrearHorariosOrganizacion} />} />
               <Route path='/dashboard/listServices' element={<ProtectedRoute component={ServiciosOrganizacion} />} />
               <Route path='/dashboard/createServiceOrganization' element={<ProtectedRoute component={CrearServicioOrganizacion} />} />                    
             </Route> 
