@@ -77,7 +77,6 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
             </Route>
             <Route element={<AppLayoutPrivate />}>
               {/* Rutas organización */}
-              <Route path='/verifyOrganization' element={<ProtectedRoute component={HomePrivate} />} />
               <Route path='/verifyOrganization/createOrganization' element={<ProtectedRoute component={CrearOrganizacion} />} />
               <Route path='/profile' element={<ProtectedRoute component={PerfilOrganizacion} />}/>
               <Route path='/organizationScheduleList' element={<ProtectedRoute component={HorariosOrganizacion} />} />
