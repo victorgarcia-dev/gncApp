@@ -11,7 +11,7 @@ import { ListaOrganizaciones } from './pages/public/organizacion/ListaOrganizaci
 import { Calendario } from './pages/public/turnero/Calendario';
 
 {/** private*/}
-import { DashboardView } from './pages/private/components/DashboardView';
+//import { DashboardView } from './pages/private/components/DashboardView';
 import { AppLayoutPrivate } from './layout/AppLayoutPrivate';
 import { CrearTurnoUsuario } from './pages/public/turnero/CrearTurnoUsuario';
 import { PerfilOrganizacion } from './pages/private/organizacion/PerfilOrganizacion';
@@ -23,6 +23,7 @@ import { CrearOrganizacion } from './pages/private/form/CrearOrganizacion';
 import { CalendarioOrganizacion } from './pages/private/form/CalendarioOrganizacion';
 import { CrearTurnoUsuarioOrganizacion } from './pages/private/form/CrearTurnoUsuarioOrganizacion';
 import { ListaDeTurnosPorDia } from './pages/private/organizacion/ListaDeTurnosPorDia';
+import { HomePrivate } from './pages/private/components/HomePrivate';
 
 
 
@@ -76,7 +77,7 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
             </Route>
             <Route element={<AppLayoutPrivate />}>
               {/* Rutas organización */}
-              <Route path='/verifyOrganization' element={<ProtectedRoute component={DashboardView} />} />
+              <Route path='/verifyOrganization' element={<ProtectedRoute component={HomePrivate} />} />
               <Route path='/verifyOrganization/createOrganization' element={<ProtectedRoute component={CrearOrganizacion} />} />
               <Route path='/profile' element={<ProtectedRoute component={PerfilOrganizacion} />}/>
               <Route path='/organizationScheduleList' element={<ProtectedRoute component={HorariosOrganizacion} />} />

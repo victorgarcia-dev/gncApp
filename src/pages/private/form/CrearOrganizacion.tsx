@@ -26,8 +26,9 @@ export const CrearOrganizacion = () => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [idToken, setIdToken] = useState("");
-  const {user,} = useAuth0();
-  console.log(user?.sub)
+  const {user} = useAuth0();
+
+  //console.log(user?.sub) //idOrganization
   function closeModal() {
     setIsOpen(false)
   }

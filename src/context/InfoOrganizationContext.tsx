@@ -29,9 +29,6 @@ export const InfoOrganizationContext = createContext<InfoOrganizationContextProp
 export const InfoOrganizationProvider = ( {children}: InfoOrganizationProviderProps ) => {
     const  [infoOrganization, setInfoOrganization] = useState({});
 
-    console.log(infoOrganization);
-   
-
     return(
         <InfoOrganizationContext.Provider value={{ infoOrganization, setInfoOrganization}}>
             {children}
