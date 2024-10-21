@@ -23,17 +23,17 @@ export const CheckMyStatus = () => {
     <>
         <div className="mt-3
          flex min-h-full flex-col justify-center px-6 lg:px-8">
-          <h2 className="font-bold text-white text-center font-xl pt-1 mb-6"><span className="text-white">Verificar </span>Mi Estado</h2>
+          <h2 className="font-bold text-black text-center font-xl pt-1 mb-6"><span className="text-black">Verificar </span>Mi Estado</h2>
           <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
             <form className='space-y-6' onSubmit={handleSubmit(handleForm)}
                   noValidate
             >
               <div>
-                <label htmlFor="patente" className="block text-sm font-medium leading-3 text-white mb-4">Ingrese su numero de patente</label>
+                <label htmlFor="patente" className="block text-sm font-medium leading-3 text-black mb-4">Ingrese su numero de patente</label>
                 <input id="patente" 
                       type="text" 
                       autoComplete='patente'
-                      className="bg-gray-700 px-3 block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
+                      className="px-3 block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
                       {...register("patente", {
                         required: "requiere una patente",
                       })}

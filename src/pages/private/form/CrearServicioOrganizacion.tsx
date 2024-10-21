@@ -1,11 +1,13 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '../../../components/ErrorMessage';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 type Service = 
   {
     id: number,
-    nombreServicio: string
     costo: number,
     serviciosId: number,
     organizacionId: number
@@ -14,11 +16,18 @@ type Service =
 
 export const CrearServicioOrganizacion = () => {
 
+
   const navigate = useNavigate();
+
+  //obtener datos del localStorage
+  const loadFromLocalStorage = (key: string) => {
+    const storedValue = localStorage.getItem(key);
+    return JSON.parse(storedValue || ""); // Convierte de JSON a su tipo original
+  };
+
 
   const initialValues: Service = {
     "id": 0,
-    "nombreServicio": "",
     "costo": 0,
     "serviciosId": 0,
     "organizacionId": 1
@@ -26,9 +35,25 @@ export const CrearServicioOrganizacion = () => {
 
   const { register, handleSubmit, formState:{errors}} = useForm({defaultValues:initialValues});
 
+
+
   const handleCreateTurner = (formData: Service) => { 
-     console.log(formData);
-     navigate('/dashboard/listServices')
+
+    axios
+    .post(`https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/serviciosPorOrganizacion/v1/user/${loadFromLocalStorage('idUser')}`, formData,{
+      headers: {
+        Authorization: `Bearer ${loadFromLocalStorage('id_token')}`,  // Incluye el Bearer token en los headers
+        'Content-Type': 'application/json' // Asegúrate de que el tipo de contenido sea JSON
+      },
+    })
+    .then((response) => {
+      console.log("Respuesta del servidor:", response.data);
+    })
+    .catch((error) => {
+      console.error("Error al enviar los datos:", error);
+    });
+
+     navigate('/listServices')
 }
   return (
     <div className="isolate bg-white px-6 py-4 sm:py-32 lg:px-8 rounded">
@@ -38,25 +63,7 @@ export const CrearServicioOrganizacion = () => {
         por favor, complete los siguientes campos
       </p>
     </div>
-    <form  className="mx-auto mt-10 max-w-xl sm:mt-20" onSubmit={handleSubmit(handleCreateTurner)}>
-        <div className='sm:col-span-2'>
-          <label htmlFor="nombreServicio" className="block text-sm font-semibold leading-6 text-gray-900">
-            Nombre del Servicio
-          </label>
-          <div className="mt-2.5">
-            <input
-              id="nombreServicio"
-              type="text"
-              autoComplete="nombreServicio"
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              {...register("nombreServicio", {
-                required: "El nombre del servicio es obligatorio",
-            })}
-            />
-            {errors.nombreServicio && (
-                  <ErrorMessage>{errors.nombreServicio.message}</ErrorMessage>
-              )}
-          </div>
+    <form  className="mx-auto mt-10 max-w-xl sm:mt-20" onSubmit={handleSubmit(handleCreateTurner)}>   
         <div className="sm:col-span-2">
           <label htmlFor="costo" className="block text-sm font-semibold leading-6 text-gray-900">
             Costo del Servicio
@@ -75,7 +82,7 @@ export const CrearServicioOrganizacion = () => {
                   <ErrorMessage>{errors.costo.message}</ErrorMessage>
               )}
           </div>
-        </div>
+        
       </div>
   
       <div className="mt-10">

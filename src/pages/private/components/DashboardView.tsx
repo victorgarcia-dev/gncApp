@@ -1,21 +1,16 @@
 import { CrearOrganizacion } from "../form/CrearOrganizacion";
+import LogoutButton from "../../auth/LogoutButton";
 
-type ChildComponentProps = {
-
-    setExisteUser: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export const DashboardView = ({setExisteUser}: ChildComponentProps) => {
-
-  const crearOrganizacion = ( ) => {
-    setExisteUser(true)
-     
-  }
+export const DashboardView = () => {
 
   return (
     <>
     <div className="bg-white h-screen">
+   
       <div className="relative isolate px-6 pt-3 lg:px-8">
+      <div className="grid justify-items-end mr-3 mb-8 mt-2">
+          <LogoutButton/>
+      </div>
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -36,23 +31,6 @@ export const DashboardView = ({setExisteUser}: ChildComponentProps) => {
             <p className="mt-6 text-lg leading-8 text-gray-600">
                Gracias por unirte a nosotros. ¡Estamos emocionados de que pruebes nuestra app! Si tienes alguna duda, no dudes en contactarnos. ¡Esperamos que disfrutes de la experiencia!
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <div className="text-lg font-semibold leading-6 text-gray-900">
-                Comienza por seleccionar tu organización <span aria-hidden="true">→</span>
-              </div>
-              <button
-                onClick={() => crearOrganizacion()}
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Taller
-              </button>
-              <button
-              disabled={true}
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                PEC
-              </button>
-            </div>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <div className="text-lg font-semibold leading-6 text-gray-900">
                 ¿No tienes una organizacion? crea una <span aria-hidden="true">→</span>

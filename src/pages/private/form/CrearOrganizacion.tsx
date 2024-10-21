@@ -1,7 +1,11 @@
 import { ErrorMessage } from "../../../components/ErrorMessage";
 import { useForm } from "react-hook-form";
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios';
+import { useEffect } from "react";
+
 
 type Organization = {
   id: number,
@@ -19,8 +23,11 @@ type Organization = {
 
 export const CrearOrganizacion = () => {
 
-  const [isOpen, setIsOpen] = useState(false)
 
+  const [isOpen, setIsOpen] = useState(false)
+  const [idToken, setIdToken] = useState("");
+  const {user,} = useAuth0();
+  console.log(user?.sub)
   function closeModal() {
     setIsOpen(false)
   }
@@ -28,6 +35,10 @@ export const CrearOrganizacion = () => {
   function openModal() {
     setIsOpen(true)
   }
+
+//auth0_id
+const str = user?.sub;
+const result = str?.substring(6); // Reemplaza el inicio de la cadena
 
 
   const initialValues: Organization = {
@@ -39,15 +50,52 @@ export const CrearOrganizacion = () => {
     direccion: "",
     telefono: "",
     email: "",
-    uid: "",
+    uid: result || "",
     tipoOrganizacionId: 1,
     localidadId: 1
-    };
+  };
 
-    const { register, handleSubmit, formState:{errors}} = useForm({defaultValues:initialValues});
+  //recuperar localstorage
+  const loadFromLocalStorage = (key: string) => {
+    const storedValue = localStorage.getItem(key);
+    return JSON.parse(storedValue || ""); // Convierte de JSON a su tipo original
+  };
+
+useEffect(() => {
+    // Cargar el usuario desde Local Storage al montar el componente
+    const savedIdToken = loadFromLocalStorage('id_token');
+    if (savedIdToken) {
+     setIdToken(savedIdToken)
+    }
+
+    //guardar idUser localstorage
+    saveToLocalStorage('idUser',result)
+  }, []);
+
+  //guardar localstorage idUser
+  const saveToLocalStorage = (key: string, value: any): void => {
+    localStorage.setItem(key, JSON.stringify(value)); // Convierte el valor a JSON
+  };
+  
+
+  const { register, handleSubmit, formState:{errors}} = useForm({defaultValues:initialValues});
   
   const handleCreateOrganization = (formData: Organization) => { 
      console.log(formData);
+
+     axios
+      .post("https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/organizacion/v1", formData,{
+        headers: {
+          Authorization: `Bearer ${idToken}`,  // Incluye el Bearer token en los headers
+          'Content-Type': 'application/json' // Asegúrate de que el tipo de contenido sea JSON
+        },
+      })
+      .then((response) => {
+        console.log("Respuesta del servidor:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar los datos:", error);
+      });
      setIsOpen(false)
   }
 

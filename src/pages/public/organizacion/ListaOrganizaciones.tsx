@@ -8,7 +8,7 @@ export const ListaOrganizaciones = () => {
   const [post, setPost] = useState<any[]>([]);
   const [loading, setLoading] = useState(true); //spinner
 
-  const baseURL = "https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/organizacion";
+  const baseURL = "https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/organizacion/v1";
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { GrServices } from "react-icons/gr";
 import { FaClipboardList } from "react-icons/fa6";
 import { MdOutlineHourglassBottom } from "react-icons/md";
+import { RiCalendarScheduleFill } from "react-icons/ri";
 import LogoutButton from "../../auth/LogoutButton";
 import { RiAdminLine } from "react-icons/ri";
 
@@ -21,7 +22,7 @@ export const Sidebar = () => {
          <h2 className="px-3 py-2 text-md text-gray-600 font-bold">Taller</h2>
          <Link 
                className='rounded-md px-3 py-1 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white flex items-center'
-               to='/dashboard/profile'
+               to='/profile'
           >
             <RiAdminLine className="text-3xl mr-5"/>
             Perfil
@@ -40,7 +41,7 @@ export const Sidebar = () => {
             >
                 <MenuItem>
                 <Link 
-                 to={'/dashboard/organizationScheduleList'}
+                 to={'/organizationScheduleList'}
                  className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                     <MdPageview className="size-4 fill-white/30" />
                     Ver Lista
@@ -48,7 +49,7 @@ export const Sidebar = () => {
                 </MenuItem>
                 <MenuItem>
                 <Link 
-                 to={'/dashboard/createOrganizationalSchedules'}
+                 to={'/createOrganizationalSchedules'}
                  className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                     <PencilIcon className="size-4 fill-white/30" />
                     Crear
@@ -71,7 +72,7 @@ export const Sidebar = () => {
             >
                 <MenuItem>
                 <Link 
-                 to={'/dashboard/listServices'}
+                 to={'/listServices'}
                  className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                     <MdPageview className="size-4 fill-white/30" />
                     Ver Lista
@@ -79,7 +80,7 @@ export const Sidebar = () => {
                 </MenuItem>
                 <MenuItem>
                 <Link 
-                 to={'/dashboard/createServiceOrganization'}
+                 to={'/createServiceOrganization'}
                  className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                     <PencilIcon className="size-4 fill-white/30" />
                     Crear
@@ -91,10 +92,17 @@ export const Sidebar = () => {
           <h2 className="mt-5 px-3 py-2 text-md text-gray-600 font-bold">Administración</h2>
           <Link 
                className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white flex items-center'
-               to='/dashboard/calendar'
+               to='/organizationCalendar/1' //poner id de la organizacion actual
+          >
+            <RiCalendarScheduleFill className="text-3xl mr-5"/>
+             Agendar Turno
+          </Link>
+          <Link 
+               className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white flex items-center'
+               to='/ListTurnerDay'
           >
             <FaClipboardList className="text-3xl mr-5"/>
-             Agendar Turno
+             Ver Turnos
           </Link>
       </nav>
     </aside>

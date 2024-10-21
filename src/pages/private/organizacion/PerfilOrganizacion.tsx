@@ -1,6 +1,49 @@
 import { VscOrganization } from "react-icons/vsc";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+type Organization = {
+  id: number,
+  nombre: string,
+  razonSocial: string,
+  cuit: string,
+  intervaloPorHorario: number,
+  direccion: string,
+  telefono: string,
+  email: string,
+  uid: string,
+  tipoOrganizacionId: number,
+  localidadId: number
+}
+
+
 
 export const PerfilOrganizacion = () => {
+const [data, setData] = useState<Organization[]>([]);  // Estado para almacenar los datos
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://fzwnfezda1.execute-api.us-east-1.amazonaws.com/test/organizacion/v1/users/${loadFromLocalStorage('idUser')}`, {
+          headers: {
+            Authorization: `Bearer ${loadFromLocalStorage('id_token')}`,  // Agregar el token de autorización aquí
+          },
+        });
+        setData(response.data[0]);
+      } catch (err) {
+       console.log(err);
+      }
+    };
+
+    fetchData();  // Llamar a la función asíncrona
+  }, []);  //
+
+  //obtener datos del localStorage
+  const loadFromLocalStorage = (key: string) => {
+    const storedValue = localStorage.getItem(key);
+    return JSON.parse(storedValue || ""); // Convierte de JSON a su tipo original
+  };
+
   return (
     <div className='mx-3'>
       <div className="px-4 sm:px-0">
@@ -10,27 +53,27 @@ export const PerfilOrganizacion = () => {
         <dl className="divide-y divide-gray-100">
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Nombre de la Organización</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Margot Foster</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{data.nombre || "----"}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Razon Social</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">1234</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{data.razonSocial || "----"}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Cuit</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">20-38276164-3</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{data.cuit || "----"}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Dirección</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">los alamos al 123</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{data.direccion || "----"}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Email</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{data.email || "----"}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Telefono</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">3513965599</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{data.telefono || "----"}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Actualizar</dt>

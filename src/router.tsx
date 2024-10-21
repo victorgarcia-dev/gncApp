@@ -20,6 +20,10 @@ import { HorariosOrganizacion } from './pages/private/organizacion/HorariosOrgan
 import { CrearServicioOrganizacion } from './pages/private/form/CrearServicioOrganizacion';
 import { CrearHorariosOrganizacion } from './pages/private/form/CrearHorariosOrganizacion';
 import { CrearOrganizacion } from './pages/private/form/CrearOrganizacion';
+import { CalendarioOrganizacion } from './pages/private/form/CalendarioOrganizacion';
+import { CrearTurnoUsuarioOrganizacion } from './pages/private/form/CrearTurnoUsuarioOrganizacion';
+import { ListaDeTurnosPorDia } from './pages/private/organizacion/ListaDeTurnosPorDia';
+
 
 
 
@@ -62,6 +66,7 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
         >
           <Routes>
             <Route element={<AppLayout />}>
+              {/**rutas publicas */}
               <Route path='/' element={<Home/>} index />
               <Route path='/user' element={<ShowUserData />} />
               <Route path='/user/listOrganizations' element={<ListaOrganizaciones/>} />
@@ -73,11 +78,14 @@ const ProtectedRoute = ({ component: Component, ...args }) => {
               {/* Rutas organización */}
               <Route path='/verifyOrganization' element={<ProtectedRoute component={DashboardView} />} />
               <Route path='/verifyOrganization/createOrganization' element={<ProtectedRoute component={CrearOrganizacion} />} />
-              <Route path='/dashboard/profile' element={<ProtectedRoute component={PerfilOrganizacion} />}/>
-              <Route path='/dashboard/organizationScheduleList' element={<ProtectedRoute component={HorariosOrganizacion} />} />
-              <Route path='/dashboard/createOrganizationalSchedules' element={<ProtectedRoute component={CrearHorariosOrganizacion} />} />
-              <Route path='/dashboard/listServices' element={<ProtectedRoute component={ServiciosOrganizacion} />} />
-              <Route path='/dashboard/createServiceOrganization' element={<ProtectedRoute component={CrearServicioOrganizacion} />} />                    
+              <Route path='/profile' element={<ProtectedRoute component={PerfilOrganizacion} />}/>
+              <Route path='/organizationScheduleList' element={<ProtectedRoute component={HorariosOrganizacion} />} />
+              <Route path='/createOrganizationalSchedules' element={<ProtectedRoute component={CrearHorariosOrganizacion} />} />
+              <Route path='/listServices' element={<ProtectedRoute component={ServiciosOrganizacion} />} />
+              <Route path='/createServiceOrganization' element={<ProtectedRoute component={CrearServicioOrganizacion} />} />
+              <Route path='/organizationCalendar/:id' element={<ProtectedRoute component={CalendarioOrganizacion} />} />
+              <Route path='/organizationCalendar/createTurnerUser' element={<ProtectedRoute component={CrearTurnoUsuarioOrganizacion} />} />    
+              <Route path='/ListTurnerDay' element={<ProtectedRoute component={ListaDeTurnosPorDia} />} />                 
             </Route> 
           </Routes>
         </Auth0ProviderWithRedirectCallback>

@@ -5,14 +5,19 @@ import './index.css'
 import { Router } from './router'
 
 import { UserDateProvider } from './context/DateContext';
+import { InfoOrganizationProvider } from './context/InfoOrganizationContext';
+
 
 
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <UserDateProvider>
-       <Router/>
-    </UserDateProvider>
+    <InfoOrganizationProvider>
+      <UserDateProvider>
+        <Router/>
+      </UserDateProvider>
+    </InfoOrganizationProvider>
   </React.StrictMode>,
+  
 )
